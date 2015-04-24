@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="ko.kosta.hibernate.domain">
+	<class name="User" table="USER">
+		<id name="userId" column="USER_ID" access="field" />
+		<property name="name" column="NAME" />
+		
+		<component name="address" class="Address">
+			<property name="zipCode" column="ZIP_CODE"/>
+			<property name="city" column="CITY"/>
+			<property name="state" column="STATE"/>
+		</component>
+	</class>
+</hibernate-mapping>

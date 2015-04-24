@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="ko.kosta.hibernate.domain">
+	<class name="Career" table="CAREER">
+		<id name="id" column="ID">
+			<generator class="identity"/>
+		</id>
+		
+		<discriminator formula="CASE WHEN business IS NOT NULL THEN 'CC' WHEN major IS NOT NULL THEN 'SC' END" type="string"/>
+
+		<property name="name" column="NAME" />
+		<property name="beginDate" column="BEGIN_DATE" />
+		<property name="endDate" column="END_DATE" />
+		
+		<subclass name="CompanyCareer" discriminator-value="CC">
+			<property name="business" column="BUSINESS"/>
+		</subclass>
+		
+		<subclass name="SchoolCareer" discriminator-value="SC">
+			<property name="major" column="MAJOR"/>
+			<property name="graduate" column="GRADUATE"/>
+		</subclass>
+	</class>
+</hibernate-mapping>
